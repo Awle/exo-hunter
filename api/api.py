@@ -55,7 +55,7 @@ def predictcurve(inputdata: ItemList):
     pipeline = joblib.load("model2.pkl")
     y_pred = pipeline.predict(X_pred)
     prediction = y_pred[0]
-    if prediction == 0:
+    if prediction < 0.5:
         result_prediction = 'This star is likely to NOT have exoplanet'
     else:
         result_prediction = 'This star is LIKELY to have exoplanet(s)'
@@ -92,9 +92,7 @@ def predictid(inputdata:Kepid):
         result_prediction = 'This star is likely to NOT have exoplanet'
     else:
         result_prediction = 'This star is LIKELY to have exoplanet(s)'
-    directory_path = os.getcwd()
-    print("My current directory is : " + directory_path)
-    database = pd.read_csv('raw_data/keplerid_for_manim.csv')
+    database = pd.read_csv('api/keplerid_for_manim.csv')
     database = database[database['kepid'] == kepid]
     solar_mass = list(database['sun_mass (solar_mass)'].values)[0]
     solar_radius = list(database['sun_radius (solar_radii)'].values)[0]
