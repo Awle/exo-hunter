@@ -9,7 +9,7 @@ numpy
 pandas
 scikit-learn
 lightkurve
-tensorflow
+# tensorflow
 pyts
 
 
